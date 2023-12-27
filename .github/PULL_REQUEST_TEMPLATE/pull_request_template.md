@@ -2,7 +2,7 @@
 ---
 name: Pull Request Template
 about: Used to document pull requests
-title: Issue #/:
+title: Issue #
 labels: ''
 assignees: ''
 
