@@ -1,10 +1,10 @@
 #ifndef BSTTREE_H
 #define BSTTREE_H
 
-class BSTTree {
+class BstTree {
     public:
-        BSTTree();
-        ~BSTTree();
+        BstTree();
+        ~BstTree();
         Node* find() const;
         Node* newNode(int)
         Node* insertNode(Node*, int);
