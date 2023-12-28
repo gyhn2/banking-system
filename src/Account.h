@@ -2,6 +2,8 @@
 #define ACCOUNT_H
 #include "Node.h"
 
+/* Bank Acoount */
+
 class Account : public Node {
 
     public:
