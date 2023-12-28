@@ -8,8 +8,7 @@ Tree::~Tree() {
 }
 
 Node* Tree::newNode(int key) {
-    Node* node = new Node();
-    node->key = key;
+    Node* node = new Node(key);
     node->left = NULL;
     node->right = NULL;
     return node;
@@ -120,3 +119,5 @@ void Tree::printTree() const {
 }
 
 void Tree::free() {}
+
+void Tree::traversal() {}
