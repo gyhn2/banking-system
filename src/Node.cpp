@@ -7,8 +7,6 @@ Node::Node(int num): key(num) {
 }
 
 Node::~Node() {
-    delete left;
-    delete right;
 }
 
 Node::Node(const Node& node): 

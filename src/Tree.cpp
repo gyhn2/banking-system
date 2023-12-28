@@ -4,7 +4,8 @@
 Tree::Tree(): root(NULL) {}
 
 Tree::~Tree() {
-    delete root;
+    // if (root != NULL)
+        delete root;
 }
 
 Node* Tree::newNode(int key) {
@@ -42,7 +43,9 @@ Node* Tree::deleteNode(Node* aNode, int num) {
         std::cout << "No such node!" << std::endl;
         return aNode;
     } else if (num == aNode->key) {
+        int isRoot = 0;
         Node* curNode = aNode;
+        if (curNode == root) isRoot = 1;
         if (aNode->left == NULL) {
             aNode = aNode->right;
             delete curNode;
@@ -58,6 +61,8 @@ Node* Tree::deleteNode(Node* aNode, int num) {
             aNode->key = curNode->key;
             aNode->right = deleteNode(aNode->right, aNode->key);
         }
+        // if root node is the deleted node, point to the replacement
+        if (isRoot == 1) root = aNode;
         
     } else if (num < aNode->key) {
         aNode->left = deleteNode(aNode->left, num);
