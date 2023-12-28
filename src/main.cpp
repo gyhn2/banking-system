@@ -24,7 +24,24 @@ int main() {
     t->deleteNode(5);
     // t->getRoot()->rightC()->print();
     // t->getRoot()->rightC()->rightC()->leftC()->print();
-    t->find(13)->print();
+
+    t->deleteNode(4);
+    t->deleteNode(13); 
+    t->deleteNode(8); 
+    t->deleteNode(1); 
+    t->deleteNode(2); 
+    t->deleteNode(10); 
+    t->deleteNode(152); 
+    t->deleteNode(3);
+    t->deleteNode(15); 
+
+    std::cout << "height: " << t->height() << std::endl;
+    std::cout << "size: " << t->size() << std::endl;
+    delete t;
+
+    // delete t; 
+
+
 
     
 
