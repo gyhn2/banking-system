@@ -15,7 +15,7 @@ class Node {
         Node(const Node&);
         int getKey() const;
         virtual void print() const;
-        //temporary
+        //temporary getters
         Node* leftC();
         Node* rightC();
 

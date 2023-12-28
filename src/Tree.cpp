@@ -4,8 +4,7 @@
 Tree::Tree(): root(NULL) {}
 
 Tree::~Tree() {
-    // if (root != NULL)
-        delete root;
+    freeTree(root);
 }
 
 Node* Tree::newNode(int key) {
@@ -15,11 +14,12 @@ Node* Tree::newNode(int key) {
     return node;
 }
 
-Node* Tree::insertNode(Node* aNode, int num) {
-    if (root == NULL) {
-        root = newNode(num);
-        return root;
-    }
+Node* Tree::insertNode(Node*& aNode, int num) {
+    // Node*
+    // if (root == NULL) {
+    //     root = newNode(num);
+    //     return root;
+    // }
     if (aNode == NULL) {
         aNode = newNode(num);
     } else {
@@ -35,17 +35,19 @@ Node* Tree::insertNode(Node* aNode, int num) {
 }
 
 Node* Tree::insertNode(int num) {
-    return insertNode(&*root, num);
+    // return insertNode(&*root, num);
+    return insertNode(root, num);
 }
 
-Node* Tree::deleteNode(Node* aNode, int num) {
+Node* Tree::deleteNode(Node*& aNode, int num) {
     if (aNode == NULL) {
         std::cout << "No such node!" << std::endl;
         return aNode;
     } else if (num == aNode->key) {
-        int isRoot = 0;
         Node* curNode = aNode;
-        if (curNode == root) isRoot = 1;
+        /* use for Node* */
+        // int isRoot = 0;
+        // if (curNode == root) isRoot = 1;
         if (aNode->left == NULL) {
             aNode = aNode->right;
             delete curNode;
@@ -53,7 +55,7 @@ Node* Tree::deleteNode(Node* aNode, int num) {
         else if (aNode->right == NULL) {
             aNode = aNode->left;
             delete curNode;
-        } else { // children on both sides
+        } else {
             curNode = curNode->right;
             while (curNode && curNode->left != NULL) {
                 curNode = curNode->left;
@@ -61,8 +63,7 @@ Node* Tree::deleteNode(Node* aNode, int num) {
             aNode->key = curNode->key;
             aNode->right = deleteNode(aNode->right, aNode->key);
         }
-        // if root node is the deleted node, point to the replacement
-        if (isRoot == 1) root = aNode;
+        // if (isRoot == 1) root = aNode;
         
     } else if (num < aNode->key) {
         aNode->left = deleteNode(aNode->left, num);
@@ -120,9 +121,46 @@ Node* Tree::getRoot() const {
     return root;
 }
 
-void Tree::printTree() const {
+void Tree::freeTree() {
+    freeTree(root);
 }
 
-void Tree::free() {}
+void Tree::freeTree(Node*& node) {
+    if (node == NULL) return;
+    freeTree(node->left);
+    freeTree(node->right);
+    delete node;
+    node = NULL;
+}
 
-void Tree::traversal() {}
+void Tree::traversal() {
+    postOrder(root);
+    std::cout<< std::endl;
+}
+
+void Tree::inOrder(Node* node) {
+    if (node == NULL)
+        return;
+    inOrder(node->left);
+    std::cout << node->key << " ";
+    inOrder(node->right);
+}
+
+void Tree::preOrder(Node* node) {
+    if (node == NULL)
+        return;
+    std::cout << node->key << " ";
+    preOrder(node->left);
+    preOrder(node->right);
+}
+
+void Tree::postOrder(Node* node) {
+    if (node == NULL)
+        return;
+    postOrder(node->left);
+    postOrder(node->right);
+    std::cout << node->key << " ";
+}
+
+void Tree::printTree() const {
+}
