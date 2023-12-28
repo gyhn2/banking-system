@@ -28,7 +28,7 @@ Node* Tree::insertNode(Node* aNode, int num) {
         } else if (num > aNode->key) {
             aNode->right = insertNode(aNode->right, num);
         } else {
-            std::cout<< "Duplicate node!" <<std::endl;
+            std::cout<< "Duplicate key not allowed: " << num << std::endl;
         }
     }
     return aNode;

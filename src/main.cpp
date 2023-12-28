@@ -1,9 +1,10 @@
 #include "Tree.h"
+#include "AccountTree.h"
 #include <iostream>
 
 int main() {
 
-    // BST example
+    // BST test
     Tree* t = new Tree();
 
     t->insertNode(3);
@@ -39,11 +40,18 @@ int main() {
     std::cout << "size: " << t->size() << std::endl;
     delete t;
 
-    // delete t; 
 
-
-
-    
+    // Account test
+    AccountTree* at = new AccountTree();
+    Account* acc = new Account();
+    Account* acc2 = new Account();
+    acc->print();
+    acc2->print();
+    at->insertNode(5);
+    at->deleteNode(5);
+    delete acc;
+    delete acc2;
+    delete at;
 
     return 0;
 }
