@@ -2,7 +2,7 @@
 #define TREE_H
 #include "Node.h"
 
-/* Binary Search Tree*/
+/* Binary Search Tree */
 
 class Tree {
     public:
@@ -16,6 +16,7 @@ class Tree {
         int size();
         void printTree() const;
         void free();
+        void traversal();
         // temporary
         Node* getRoot() const;
 
