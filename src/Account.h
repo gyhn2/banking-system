@@ -8,16 +8,17 @@ class Account : public Node {
 
     public:
         Account();
-        Account(int, int=0, std::string="", std::string="");
-        bool deposit(int);
-        bool withdraw(int);
-        bool transfer(Account*, int);
-        bool pay(Account*, int);
+        Account(int, double=0, std::string="", std::string="");
+        bool deposit(double);
+        bool withdraw(double);
+        bool transfer(Account*, double);
+        bool pay(Account*, double);
         void print();
 
     private:
-        int account_num = key;
-        int balance;
+        static int nextNum;
+        int acc_num = key;
+        double balance;
         std::string fname;
         std::string lname;
         
