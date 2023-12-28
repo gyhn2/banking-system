@@ -19,6 +19,7 @@ int Node::getKey() const {
 
 void Node::print() const {
 
+    // draft
     std::cout << "  [" << key << "]  "<< std::endl;
     if (left) std::cout << " /";
     if (right) std::cout << "  \\";

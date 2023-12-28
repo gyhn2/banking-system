@@ -13,7 +13,7 @@ class Account : public Node {
         bool withdraw(double);
         bool transfer(Account*, double);
         bool pay(Account*, double);
-        void print();
+        virtual void print() const;
 
     private:
         static int nextNum;

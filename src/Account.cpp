@@ -4,7 +4,6 @@ int Account::nextNum = 10000;
 
 Account::Account(): acc_num(nextNum++)
 {
-
 }
 
 Account::Account(int acc_num, double balance, std::string fname, std::string lname):
@@ -38,7 +37,7 @@ bool Account::pay(Account * acc, double amt)
     return false;
 }
 
-void Account::print()
+void Account::print() const
 {
     std::cout << acc_num << " (" << fname << " " << lname << "): $" 
     << balance << std::endl;
