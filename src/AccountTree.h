@@ -11,9 +11,13 @@ class AccountTree : public Tree {
         Account* createAccount(int);
         Account* deleteAccount(int);
         Account* findAccount(int);
+        double totalMoney() const;
+        bool transfer(int, int, int);
 
     private:
-
+        Account* root;
+        bool transfer(Account*, Account*, int);
+        Account* findAccount(Account*, int);
 };
 
 #endif

@@ -7,6 +7,8 @@ Node::Node(int num): key(num) {
 }
 
 Node::~Node() {
+    // delete left;
+    // delete right;
 }
 
 Node::Node(const Node& node): 
@@ -19,6 +21,7 @@ int Node::getKey() const {
 
 void Node::print() const {
 
+    // draft
     std::cout << "  [" << key << "]  "<< std::endl;
     if (left) std::cout << " /";
     if (right) std::cout << "  \\";

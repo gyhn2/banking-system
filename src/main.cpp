@@ -18,6 +18,7 @@ int main() {
     t->insertNode(13);
     t->insertNode(4);
 
+    t->traversal();
     std::cout << "height: " << t->height() << std::endl;
     std::cout << "size: " << t->size() << std::endl;
 
@@ -25,26 +26,18 @@ int main() {
     t->deleteNode(5);
     // t->getRoot()->rightC()->print();
     // t->getRoot()->rightC()->rightC()->leftC()->print();
-
-    t->deleteNode(4);
-    t->deleteNode(13); 
-    t->deleteNode(8); 
-    t->deleteNode(1); 
-    t->deleteNode(2); 
-    t->deleteNode(10); 
-    t->deleteNode(152); 
-    t->deleteNode(3);
-    t->deleteNode(15); 
+    t->traversal();
+    // t->freeTree();
 
     std::cout << "height: " << t->height() << std::endl;
     std::cout << "size: " << t->size() << std::endl;
-    delete t;
 
+    delete t;
 
     // Account test
     AccountTree* at = new AccountTree();
     Account* acc = new Account();
-    Account* acc2 = new Account();
+    Account* acc2 = new Account(300.5, "I", "Am");
     acc->print();
     acc2->print();
     at->insertNode(5);

@@ -15,7 +15,7 @@ class Tree {
         int height();
         int size();
         void printTree() const;
-        void free();
+        void freeTree();
         void traversal();
         // temporary
         Node* getRoot() const;
@@ -23,10 +23,14 @@ class Tree {
     private:
         Node *root;
         Node* find(Node*, int);
-        Node* insertNode(Node*, int);
-        Node* deleteNode(Node*, int);
+        Node* insertNode(Node*&, int);
+        Node* deleteNode(Node*&, int);
+        void freeTree(Node*& );
         int heightFrom(Node*);
         int size(Node*);
+        void inOrder(Node*);
+        void preOrder(Node*);
+        void postOrder(Node*);
 };
 
 #endif
