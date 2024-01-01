@@ -10,10 +10,11 @@ class Account : public Node {
     friend class AccountTree;
 
     public:
-        Account();
-        Account(double, string, string);
+        // Account();
+        Account(double=0.0, string="", string="");
         Account(string, string);
-        Account(int, double=0, string="", string="");
+        Account(int, double=0.0, string="", string="");
+        ~Account();
         bool deposit(double);
         bool withdraw(double);
         bool pay(Account*&, double);
