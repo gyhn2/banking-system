@@ -14,9 +14,10 @@ class Tree {
         Node* deleteNode(int);
         int height();
         int size();
-        void printTree() const;
         void freeTree();
         void traversal();
+        // todo
+        void printTree() const;
         // temporary
         Node* getRoot() const;
 

@@ -38,12 +38,15 @@ int main() {
     AccountTree* at = new AccountTree();
     Account* acc = new Account();
     Account* acc2 = new Account(300.5, "I", "Am");
-    acc->print();
-    acc2->print();
-    at->insertNode(5);
-    at->deleteNode(5);
-    delete acc;
-    delete acc2;
+    at->insertAccount(acc2);
+    at->insertAccount(acc);
+    at->createAccount(1, "m", "m");
+    at->createAccount(2, "yes", "yes");
+    at->transfer(10001, 10000, 15);
+    at->traverse();
+    // at->findAccount(2)->print();
+    std::cout << at->totalMoney() << std::endl;
+    at->closeBank();
     delete at;
 
     return 0;
