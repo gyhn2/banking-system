@@ -3,7 +3,7 @@
 Node::Node() {
 }
 
-Node::Node(int num): key(num) {
+Node::Node(const int num): key(num) {
 }
 
 Node::~Node() {
@@ -38,4 +38,10 @@ Node* Node::leftC() {
 
 Node* Node::rightC() {
     return right;
+}
+
+std::ostream& operator<<(std::ostream & os, const Node & node)
+{
+    os << "[" << node.key << "]";
+    return os;
 }

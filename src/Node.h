@@ -4,13 +4,15 @@
 
 /* Binary Search Tree - Node */
 
+using namespace std;
 
 class Node {
     friend class Tree;
-    
+    friend ostream& operator<<(ostream&, const Node&); 
+
     public:
         Node();
-        Node(int);
+        Node(const int);
         ~Node();
         Node(const Node&);
         int getKey() const;
