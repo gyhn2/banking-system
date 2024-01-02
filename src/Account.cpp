@@ -2,12 +2,18 @@
 
 int Account::nextNum = 10000;
 
-Account::Account(): acc_num(nextNum++)
+// Account::Account(): acc_num(nextNum++)
+// {
+//     this->balance = 0;
+//     this->fname = "";
+//     this->lname = "";
+// }
+
+Account::Account(double balance, string fname, string lname): 
+    acc_num(nextNum++), balance(balance), fname(fname), lname(lname)
 {
-    this->balance = 0;
-    this->fname = "";
-    this->lname = "";
 }
+
 
 Account::Account(string fname, string lname): 
     acc_num(nextNum++), fname(fname), lname(lname)
@@ -15,15 +21,12 @@ Account::Account(string fname, string lname):
     this->balance = 0;
 }
 
-Account::Account(double balance, string fname, string lname): 
-    acc_num(nextNum++), balance(balance), fname(fname), lname(lname)
-{
-}
-
 Account::Account(int acc_num, double balance, string fname, string lname):
     acc_num(acc_num), balance(balance), fname(fname), lname(lname)
 {
 }
+
+Account::~Account() {}
 
 bool Account::deposit(double amt)
 {
@@ -48,8 +51,8 @@ bool Account::pay(Account *& acc, double amt)
     if (this->withdraw(amt)) {
         if (acc->deposit(amt)) {
             std::cout << "Transfer of $" << amt 
-            << " from acc no. " << getKey()
-            << " to acc no. " << acc->getKey()
+            << " from acc no. " << this->acc_num
+            << " to acc no. " << acc->acc_num
             << " success!" << std::endl;
             return true;
         } else {

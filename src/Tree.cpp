@@ -15,11 +15,6 @@ Node* Tree::newNode(int key) {
 }
 
 Node* Tree::insertNode(Node*& aNode, int num) {
-    // Node*
-    // if (root == NULL) {
-    //     root = newNode(num);
-    //     return root;
-    // }
     if (aNode == NULL) {
         aNode = newNode(num);
     } else {
@@ -45,7 +40,6 @@ Node* Tree::deleteNode(Node*& aNode, int num) {
         return aNode;
     } else if (num == aNode->key) {
         Node* curNode = aNode;
-        /* use for Node* */
         // int isRoot = 0;
         // if (curNode == root) isRoot = 1;
         if (aNode->left == NULL) {
@@ -89,6 +83,7 @@ Node* Tree::find(Node* node, int num) {
     // else if (num < node->key) return find(node->left, num);
     // else return find(node->right, num);
 
+    /* Iterative */
     Node* aNode = node;
     while (aNode != NULL) {
         if (aNode->key == num) return aNode;
@@ -107,24 +102,28 @@ int Tree::height() {
     return heightFrom(root);
 }
 
+// Size of subtree
 int Tree::size(Node* rootp) {
     if (rootp == NULL) return 0;
     return 1+size(rootp->left)+size(rootp->right);
 }
 
+// Size of BST
 int Tree::size() {
     return size(root);
 }
 
-
+// Root getter
 Node* Tree::getRoot() const {
     return root;
 }
 
+// Clear the BST
 void Tree::freeTree() {
     freeTree(root);
 }
 
+// Delete the subtree
 void Tree::freeTree(Node*& node) {
     if (node == NULL) return;
     freeTree(node->left);
@@ -133,11 +132,13 @@ void Tree::freeTree(Node*& node) {
     node = NULL;
 }
 
+// Perform a traversal method
 void Tree::traversal() {
     postOrder(root);
     std::cout<< std::endl;
 }
 
+// In-Order Traversal
 void Tree::inOrder(Node* node) {
     if (node == NULL)
         return;
@@ -146,6 +147,7 @@ void Tree::inOrder(Node* node) {
     inOrder(node->right);
 }
 
+// Pre-Order Traversal
 void Tree::preOrder(Node* node) {
     if (node == NULL)
         return;
@@ -154,6 +156,7 @@ void Tree::preOrder(Node* node) {
     preOrder(node->right);
 }
 
+// Post-Order Traversal
 void Tree::postOrder(Node* node) {
     if (node == NULL)
         return;
