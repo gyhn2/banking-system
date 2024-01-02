@@ -1,34 +1,44 @@
 #ifndef ACCOUNTTREE_H
 #define ACCOUNTTREE_H
-#include "Tree.h"
 #include "Account.h"
 
-/* Banking System as Binary Search Tree */
+/* Banking System implemented as a Binary Search Tree */
 
-class AccountTree : public Tree {
+class AccountTree {
     public:
         AccountTree();
         ~AccountTree();
-        Account* createAccount(int, double=0.0, string="", string="");
-        Account* createAccount(double=0.0, string="", string="");
-        Account* createAccount(string, string);
+        Account* createAccount(const int, const double=0.0, const std::string& = "", const std::string& = "");
+        Account* createAccount(const double=0.0, const std::string& ="", const std::string& = "");
+        Account* createAccount(const std::string&, const std::string&);
         Account* insertAccount(Account*&);
-        Account* deleteAccount(int);
-        Account* findAccount(int);
+        Account* deleteAccount(const int);
+        Account* findAccount(const int);
         double totalMoney();
-        bool transfer(int, int, int);
+        bool transfer(const int, const int, const double);
         void traverse();
+        int size();
         void closeBank();
+
+        Account* findAccount(const std::string&, const std::string&, const std::string&);
     private:
         Account* root;
         Account* insertAccount(Account*&, Account*);
-        bool transfer(Account*, Account*, int);
-        Account* findAccount(Account*, int);
+        Account* deleteAccount(Account*&, const int);
+        bool transfer(Account*, Account*, const double);
+        Account* findAccount(Account*, const int);
         double totalMoney(Account*);
         void inOrder(Account*);
         void preOrder(Account*);
         void postOrder(Account*);
+        int size(Account*);
         void freeAll(Account*&);
+
+
+        std::unordered_map<person, int> nameLookup;
+        int insertIntoMap(const std::string&, const std::string&, const std::string&, const int);
+        int getAccNumFromMap(const std::string&, const std::string&, const std::string&);
+        
 };
 
 #endif

@@ -8,10 +8,10 @@ class Tree {
     public:
         Tree();
         ~Tree();
-        Node* find(int);
-        Node* newNode(int);
-        Node* insertNode(int);
-        Node* deleteNode(int);
+        Node* find(const int);
+        Node* newNode(const int);
+        Node* insertNode(const int);
+        Node* deleteNode(const int);
         int height();
         int size();
         void freeTree();
@@ -23,9 +23,9 @@ class Tree {
 
     private:
         Node *root;
-        Node* find(Node*, int);
-        Node* insertNode(Node*&, int);
-        Node* deleteNode(Node*&, int);
+        Node* find(Node*, const int);
+        Node* insertNode(Node*&, const int);
+        Node* deleteNode(Node*&, const int);
         void freeTree(Node*& );
         int heightFrom(Node*);
         int size(Node*);
