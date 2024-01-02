@@ -9,33 +9,33 @@ int Account::nextNum = 10000;
 //     this->lname = "";
 // }
 
-Account::Account(double balance, string fname, string lname): 
+Account::Account(const double balance, const std::string&  fname, const std::string&  lname): 
     acc_num(nextNum++), balance(balance), fname(fname), lname(lname)
 {
 }
 
 
-Account::Account(string fname, string lname): 
+Account::Account(const std::string&  fname, const std::string&  lname): 
     acc_num(nextNum++), fname(fname), lname(lname)
 {
     this->balance = 0;
 }
 
-Account::Account(int acc_num, double balance, string fname, string lname):
+Account::Account(const int acc_num, const double balance, const std::string&  fname, const std::string&  lname):
     acc_num(acc_num), balance(balance), fname(fname), lname(lname)
 {
 }
 
 Account::~Account() {}
 
-bool Account::deposit(double amt)
+bool Account::deposit(const double amt)
 {
     balance += amt;
     std::cout << "Deposit of $" << amt << " success!" << std::endl;
     return true;
 }
 
-bool Account::withdraw(double amt)
+bool Account::withdraw(const double amt)
 {
     if (amt > balance) {
         std::cout << "Cannot withdraw amount greater than balance." << std::endl;
@@ -46,7 +46,7 @@ bool Account::withdraw(double amt)
     return true;
 }
 
-bool Account::pay(Account *& acc, double amt)
+bool Account::pay(Account *& acc, const double amt)
 {
     if (this->withdraw(amt)) {
         if (acc->deposit(amt)) {
@@ -63,7 +63,7 @@ bool Account::pay(Account *& acc, double amt)
     return false;        
 }
 
-bool Account::changeFName(string newname)
+bool Account::changeFName(const std::string& newname)
 {
     if (newname.length() > 0) {
         fname = newname;
@@ -73,7 +73,7 @@ bool Account::changeFName(string newname)
     return false;
 }
 
-bool Account::changeLName(string newname)
+bool Account::changeLName(const std::string& newname)
 {
     if (newname.length() > 0) {
         lname = newname;
@@ -93,3 +93,4 @@ void Account::print() const
     std::cout << acc_num << " (" << fname << " " << lname << "): $" 
     << balance << std::endl;
 }
+

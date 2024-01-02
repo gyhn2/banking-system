@@ -1,37 +1,34 @@
 #ifndef ACCOUNT_H
 #define ACCOUNT_H
-#include "Node.h"
+#include <iostream>
+#include "AccountMap.h"
 
-using std::string;
+/* Bank Acoount as a BST node */
 
-/* Bank Acoount */
-
-class Account : public Node {
+class Account {
     friend class AccountTree;
 
     public:
         // Account();
-        Account(double=0.0, string="", string="");
-        Account(string, string);
-        Account(int, double=0.0, string="", string="");
+        Account(const double=0.0, const std::string& = "", const std::string& = "");
+        Account(const std::string& , const std::string& );
+        Account(const int, const double=0.0, const std::string& = "", const std::string& = "");
         ~Account();
-        bool deposit(double);
-        bool withdraw(double);
-        bool pay(Account*&, double);
-        bool changeFName(string);
-        bool changeLName(string);
+        bool deposit(const double);
+        bool withdraw(const double);
+        bool pay(Account*&, const double);
+        bool changeFName(const std::string&);
+        bool changeLName(const std::string&);
         double getBalance() const;
         virtual void print() const;
 
-    private:
+    protected:
         static int nextNum;
-        int acc_num = key;
+        int acc_num;
         double balance;
         std::string fname;
         std::string lname;
-        Account* left;
-        Account* right;
-        
+        Account* left, *right;  
 };
 
 #endif
