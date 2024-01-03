@@ -10,23 +10,24 @@ AccountTree::~AccountTree()
 }
 
 // create and insert an account
-Account *AccountTree::createAccount(
-    const int an, const double bal, const std::string& fn, const std::string& ln)
+Account *AccountTree::createAccount(const int an, const double bal, 
+    const std::string& fn, const std::string& ln, const std::string& email)
 {
-    Account* newAccount = new Account(an, bal, fn, ln);
+    Account* newAccount = new Account(an, bal, fn, ln, email);
     return insertAccount(root, newAccount);
 }
 
-Account *AccountTree::createAccount(
-    const double bal, const std::string& fn, const std::string& ln)
+Account *AccountTree::createAccount(const double bal, 
+    const std::string& fn, const std::string& ln, const std::string& email)
 {
-    Account* newAccount = new Account(Account::nextNum++, bal, fn, ln);
+    Account* newAccount = new Account(Account::nextNum++, bal, fn, ln, email);
     return insertAccount(root, newAccount);
 }
 
-Account *AccountTree::createAccount(const std::string& fn, const std::string& ln)
+Account *AccountTree::createAccount(const std::string& fn, const std::string& ln, 
+    const std::string& email)
 {
-    Account* newAccount = new Account(Account::nextNum++, 0.0, fn, ln);
+    Account* newAccount = new Account(Account::nextNum++, 0.0, fn, ln, email);
     return insertAccount(root, newAccount);
 }
 
@@ -46,7 +47,7 @@ Account* AccountTree::insertAccount(Account*& rootAcc, Account* newAcc) {
         else
             std::cout << "Account already exists: " << rootAcc->acc_num << std::endl;
     }
-    insertIntoMap(newAcc->fname, newAcc->lname, "email", newAcc->acc_num);
+    insertIntoMap(newAcc->fname, newAcc->lname, newAcc->email, newAcc->acc_num);
     return rootAcc;
 }
 

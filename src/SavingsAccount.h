@@ -5,6 +5,7 @@
 class SavingsAccount: public Account {
     public:
     private:
+        double interestRate;
 
 };
 

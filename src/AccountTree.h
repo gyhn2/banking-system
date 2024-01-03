@@ -8,21 +8,22 @@ class AccountTree {
     public:
         AccountTree();
         ~AccountTree();
-        Account* createAccount(const int, const double=0.0, const std::string& = "", const std::string& = "");
-        Account* createAccount(const double=0.0, const std::string& ="", const std::string& = "");
-        Account* createAccount(const std::string&, const std::string&);
+        Account* createAccount(const int, const double=0.0, const std::string& = "", const std::string& = "", const std::string& = "");
+        Account* createAccount(const double=0.0, const std::string& ="", const std::string& = "", const std::string& = "");
+        Account* createAccount(const std::string&, const std::string&, const std::string&);
         Account* insertAccount(Account*&);
         Account* deleteAccount(const int);
         Account* findAccount(const int);
+        Account* findAccount(const std::string&, const std::string&, const std::string&);
         double totalMoney();
         bool transfer(const int, const int, const double);
         void traverse();
         int size();
         void closeBank();
 
-        Account* findAccount(const std::string&, const std::string&, const std::string&);
     private:
         Account* root;
+
         Account* insertAccount(Account*&, Account*);
         Account* deleteAccount(Account*&, const int);
         bool transfer(Account*, Account*, const double);
@@ -33,7 +34,6 @@ class AccountTree {
         void postOrder(Account*);
         int size(Account*);
         void freeAll(Account*&);
-
 
         std::unordered_map<person, int> nameLookup;
         int insertIntoMap(const std::string&, const std::string&, const std::string&, const int);
