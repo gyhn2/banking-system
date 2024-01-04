@@ -1,6 +1,7 @@
 #ifndef ACCOUNTTREE_H
 #define ACCOUNTTREE_H
 #include "Account.h"
+#include "SavingsAccount.h"
 
 /* Banking System implemented as a Binary Search Tree */
 
@@ -20,6 +21,10 @@ class AccountTree {
         void traverse();
         int size();
         void closeBank();
+        // to make private
+        bool changeAccountFname(Account*&, const std::string&);
+        bool changeAccountLname(Account*&, const std::string&);
+        bool changeAccountEmail(Account*&, const std::string&);
 
     private:
         Account* root;
@@ -38,7 +43,6 @@ class AccountTree {
         std::unordered_map<person, int> nameLookup;
         int insertIntoMap(const std::string&, const std::string&, const std::string&, const int);
         int getAccNumFromMap(const std::string&, const std::string&, const std::string&);
-        
 };
 
 #endif

@@ -102,7 +102,7 @@ double Account::getBalance() const
 
 void Account::print() const
 {
-    std::cout << acc_num << " (" << fname << " " << lname << "): $" 
+    std::cout << "#" << acc_num << " (" << fname << " " << lname << ", " << email << ") : $" 
     << balance << std::endl;
 }
 

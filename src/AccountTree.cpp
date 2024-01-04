@@ -103,15 +103,41 @@ Account *AccountTree::findAccount(Account* rootAcc, const int num) {
         else if (num < acc->acc_num) acc = acc->left;
         else acc = acc->right;
     }
-    std::cout << "Account Number " << num << " doesn't exist!" << std::endl;
-    // user input: new account number or cancel
-    int newAccNum; 
-    std::cin >> newAccNum;
-    if (newAccNum == -1) {
-        std::cout << "Cancelling search..." << std::endl;
-        return acc;
+
+    // Not found
+    int searchMethod;
+    std::cout << "Account Number " << num << " doesn't exist!\n" 
+    << "Enter 1 to search by account number, 2 by account holder name and email, something else to cancel search." 
+    << std::endl;
+    std::cin >> searchMethod;
+
+    switch (searchMethod) {
+        case 1: {
+            int newAccNum; 
+            std::cout << "Enter the account number: " << std::endl;
+            std::cin >> newAccNum;
+            return findAccount(rootAcc, newAccNum);
+        }
+        case 2: {
+            std::string fname, lname, em;
+            std::cout << "Enter the account holder first name: " << std::endl;
+            std::cin >> fname;
+            std::cout << "Enter the account holder last name: " << std::endl;
+            std::cin >> lname;
+            std::cout << "Enter the account holder email: " << std::endl;
+            std::cin >> em;
+            return findAccount(rootAcc, getAccNumFromMap(fname, lname, em));
+        }
+        case 3: {
+            std::cout << "Cancelling search..." << std::endl;
+            return nullptr;
+        }
+        default: {
+            std::cout << "Cancelling" << std::endl;
+            return nullptr;
+        }
     }
-    return findAccount(rootAcc, newAccNum);
+    return nullptr;
 }
 
 // calculate sum of all balances
@@ -215,3 +241,23 @@ Account* AccountTree::findAccount(const std::string& fname, const std::string& l
     const std::string& email) {
     return findAccount(getAccNumFromMap(fname, lname, email));
 }
+
+// change account info
+bool AccountTree::changeAccountFname(Account*& acc, const std::string& fn) {
+    nameLookup.erase(nameLookup.find({acc->fname, acc->lname, acc->email}));
+    nameLookup[{fn, acc->lname, acc->email}]=acc->acc_num;
+    return acc->changeFName(fn);
+}
+
+bool AccountTree::changeAccountLname(Account*& acc, const std::string& ln) {
+    nameLookup.erase(nameLookup.find({acc->fname, acc->lname, acc->email}));
+    nameLookup[{acc->fname, ln, acc->email}]=acc->acc_num;
+    return acc->changeLName(ln);
+}
+
+bool AccountTree::changeAccountEmail(Account*& acc, const std::string& em) {
+    nameLookup.erase(nameLookup.find({acc->fname, acc->lname, acc->email}));
+    nameLookup[{acc->fname, acc->lname, em}]=acc->acc_num;
+    return acc->changeEmail(em);
+}
+

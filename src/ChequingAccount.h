@@ -5,6 +5,7 @@
 class ChequingAccount: public Account {
     public:
     private:
+        Account* savingsAccount, creditAccount;
 
 };
 
