@@ -9,20 +9,22 @@ int Account::nextNum = 10000;
 //     this->lname = "";
 // }
 
-Account::Account(const double balance, const std::string&  fname, const std::string&  lname): 
-    acc_num(nextNum++), balance(balance), fname(fname), lname(lname)
+Account::Account(const double balance, 
+    const std::string&  fname, const std::string&  lname, const std::string& email): 
+    acc_num(nextNum++), balance(balance), fname(fname), lname(lname), email(email)
 {
 }
 
 
-Account::Account(const std::string&  fname, const std::string&  lname): 
-    acc_num(nextNum++), fname(fname), lname(lname)
+Account::Account(const std::string&  fname, const std::string&  lname, const std::string&  email): 
+    acc_num(nextNum++), fname(fname), lname(lname), email(email)
 {
     this->balance = 0;
 }
 
-Account::Account(const int acc_num, const double balance, const std::string&  fname, const std::string&  lname):
-    acc_num(acc_num), balance(balance), fname(fname), lname(lname)
+Account::Account(const int acc_num, const double balance, 
+    const std::string&  fname, const std::string&  lname, const std::string&  email):
+    acc_num(acc_num), balance(balance), fname(fname), lname(lname), email(email)
 {
 }
 
@@ -83,6 +85,16 @@ bool Account::changeLName(const std::string& newname)
     return false;
 }
 
+bool Account::changeEmail(const std::string& newEmail)
+{
+    if (newEmail.length() > 0) {
+        email = newEmail;
+        std::cout << "New Email: " << email << std::endl;
+        return true;
+    }
+    return false;
+}
+
 double Account::getBalance() const
 {
     return balance;
@@ -90,7 +102,7 @@ double Account::getBalance() const
 
 void Account::print() const
 {
-    std::cout << acc_num << " (" << fname << " " << lname << "): $" 
+    std::cout << "#" << acc_num << " (" << fname << " " << lname << ", " << email << ") : $" 
     << balance << std::endl;
 }
 

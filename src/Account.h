@@ -10,15 +10,16 @@ class Account {
 
     public:
         // Account();
-        Account(const double=0.0, const std::string& = "", const std::string& = "");
-        Account(const std::string& , const std::string& );
-        Account(const int, const double=0.0, const std::string& = "", const std::string& = "");
+        Account(const double=0.0, const std::string& = "", const std::string& = "", const std::string& = "");
+        Account(const std::string&, const std::string&, const std::string&);
+        Account(const int, const double=0.0, const std::string& = "", const std::string& = "", const std::string& = "");
         ~Account();
         bool deposit(const double);
         bool withdraw(const double);
         bool pay(Account*&, const double);
         bool changeFName(const std::string&);
         bool changeLName(const std::string&);
+        bool changeEmail(const std::string&);
         double getBalance() const;
         virtual void print() const;
 
@@ -28,6 +29,7 @@ class Account {
         double balance;
         std::string fname;
         std::string lname;
+        std::string email;
         Account* left, *right;  
 };
 

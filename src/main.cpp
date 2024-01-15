@@ -1,11 +1,11 @@
 #include "Tree.h"
 #include "AccountTree.h"
 #include <iostream>
+#include <future>
 
 // std::unordered_map<person, int> AccountTree::nameLookup;
 
 int main() {
-
     // BST test
     Tree* t = new Tree();
 
@@ -28,8 +28,6 @@ int main() {
 
     std::cout << *(t->getRoot())<< std::endl;
     t->deleteNode(15);
-    // t->getRoot()->rightC()->print();
-    // t->getRoot()->rightC()->rightC()->leftC()->print();
     t->traversal();
     // t->freeTree();
 
@@ -41,24 +39,41 @@ int main() {
     // Account test
     AccountTree* at = new AccountTree();
     Account* acc = new Account();
-    Account* acc2 = new Account(300.5, "John", "Doe");
+    Account* acc2 = new Account(300.5, "John", "Doe", "johndoe@email.com");
     at->insertAccount(acc2);
+    at->changeAccountEmail(acc2, "newemail@gmail.com");
+
+    if (at->findAccount("John", "Doe", "newemail@gmail.com"))
+        at->findAccount("John", "Doe", "newemail@gmail.com")->print();
+    else
+        std::cout << "NULL" << std::endl;
+
     at->insertAccount(acc);
-    at->createAccount(1, "Jane", "Smith");
-    at->createAccount(2, "Ab", "Cd");
+    at->createAccount(1, "Jane", "Smith", "janesmith@email.com");
+    at->createAccount(2, "Ab", "Cd", "abcd@email.com");
 
     at->transfer(10001, 10000, 15);
     at->traverse();
     std::cout << at->size() << std::endl;
     std::cout << at->totalMoney() << std::endl;
-    at->findAccount("Jane", "Smith", "email")->print();
-    at->findAccount(10002)->print();
+    if (at->findAccount("Jane", "Smith", "janesmith@email.com"))
+        at->findAccount("Jane", "Smith", "janesmith@email.com")->print();
+    else
+        std::cout << "NULL" << std::endl;
+
+    if (at->findAccount(10002))
+        at->findAccount(10002)->print();
+    else
+        std::cout << "NULL" << std::endl;
 
     at->deleteAccount(3);
     at->deleteAccount(10001);
     at->traverse();
-    std::cout << at->size() << std::endl;
-    std::cout << at->totalMoney() << std::endl;
+    std::cout <<  "Number of accounts: " << at->size() << std::endl;
+    std::cout << "Total money in bank: " << at->totalMoney() << std::endl;
+
+    SavingsAccount* sa = new SavingsAccount(1000, "Jason", "Nam", "jason@email.com");
+
     delete at;
 
     return 0;
